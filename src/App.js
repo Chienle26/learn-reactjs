@@ -1,15 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./App.css";
+import AlbumFeature from "./features/Album";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Chien Le
-        </p>
-      </header>
+      {/* <TodoFeature /> */}
+      <AlbumFeature />
     </div>
   );
 }
