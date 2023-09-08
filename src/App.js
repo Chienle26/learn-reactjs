@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/todos" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
-        <Route path="/products" element={<ProductFeature />} />
-        <Route path="/blogs" element={<BlogFeature />} />
+        <Route path="/products/*" element={<ProductFeature />} />
+        <Route path="/blogs/*" element={<BlogFeature />} />
       </Routes>
     </div>
   );
