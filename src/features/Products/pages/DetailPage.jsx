@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ProductInfo from "../components/ProductInfo";
 import ProductThumbnail from "../components/ProductThumbnail";
 import useProductDetail from "../hooks/useProductDetail";
+import AddToCartForm from "../components/AddToCartForm";
 DetailPage.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +46,10 @@ function DetailPage(props) {
     );
   }
 
+  const handleAddToCartSubmit = (formValues) => {
+    console.log("formValues", formValues);
+  };
+
   return (
     <Box>
       <Container className={classes.root}>
@@ -55,6 +60,7 @@ function DetailPage(props) {
             </Grid>
             <Grid item className={classes.right}>
               <ProductInfo product={product} />
+              <AddToCartForm onSubmit={handleAddToCartSubmit} />
             </Grid>
           </Grid>
         </Paper>

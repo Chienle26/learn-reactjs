@@ -15,11 +15,9 @@ TodoList.defaultProps = {
 
 function TodoList({ todoList, onTodoClick }) {
   const handleTodoClick = (todo, index) => {
-    if (!onTodoClick) return;
-
-    onTodoClick(todo, index);
+    if (onTodoClick) onTodoClick(todo, index);
   };
-  
+
   return (
     <ul className="todo-list">
       {todoList.map((todo, index) => (
@@ -27,9 +25,9 @@ function TodoList({ todoList, onTodoClick }) {
           key={todo.id}
           className={classnames({
             "todo-item": true,
-            completed: todo.status == "completed",
+            completed: todo.status === "completed",
           })}
-          onClick={() => onTodoClick(todo, index)}
+          onClick={() => handleTodoClick(todo, index)}
         >
           {todo.title}
         </li>

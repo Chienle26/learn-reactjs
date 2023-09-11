@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+import { v4 as uuid } from "uuid";
 
 TodoFeature.propTypes = {};
 
@@ -51,8 +53,21 @@ function TodoFeature(props) {
     (todo) => filteredStatus === "all" || filteredStatus === todo.status
   );
 
+  const handleTodoFormSubmit = (formValues) => {
+    const newTodo = {
+      id: uuid(),
+      title: formValues.title,
+      status: "new",
+    };
+
+    setTodoList([...todoList, newTodo]);
+  };
+
   return (
     <div>
+      <h3>What to do</h3>
+      <TodoForm onSubmit={handleTodoFormSubmit} />
+
       <h3>Todo List</h3>
       <TodoList todoList={renderedTodoList} onTodoClick={handleTodoClick} />
 
