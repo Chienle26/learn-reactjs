@@ -1,15 +1,22 @@
-import { Box, CircularProgress, Container, Grid, Paper } from "@mui/material";
+import { Box, Container, Grid, LinearProgress, Paper } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
+import AddToCartForm from "../components/AddToCartForm";
+import ProductAdditional from "../components/ProductAdditional";
+import ProductDescription from "../components/ProductDescription";
 import ProductInfo from "../components/ProductInfo";
+import ProductMenu from "../components/ProductMenu";
+import ProductReviews from "../components/ProductReviews";
 import ProductThumbnail from "../components/ProductThumbnail";
 import useProductDetail from "../hooks/useProductDetail";
-import AddToCartForm from "../components/AddToCartForm";
+
 DetailPage.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    paddingBottom: "16px",
+  },
 
   left: {
     width: "400px",
@@ -20,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
   right: {
     flex: "1 1 0",
     padding: "12px",
+  },
+
+  loading: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
   },
 }));
 
@@ -32,16 +46,8 @@ function DetailPage(props) {
 
   if (loading) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress color="inherit" size={16} />
+      <Box className={classes.loading}>
+        <LinearProgress color="success" />
       </Box>
     );
   }
@@ -64,6 +70,25 @@ function DetailPage(props) {
             </Grid>
           </Grid>
         </Paper>
+        <ProductMenu />
+        <Routes>
+          {/* <Route path={`/products/${productId}/`}>
+            <ProductDescription product={product} />
+          </Route> */}
+          <Route
+            path={`/products/${productId}/`}
+            element={<ProductDescription product={product} />}
+          />
+          <Route
+            path={`/products/${productId}/additional`}
+            element={<ProductAdditional />}
+          />
+          <Route
+            path={`/products/${productId}/reviews`}
+            element={<ProductReviews />}
+          />
+        </Routes>
+        <ProductDescription product={product} />
       </Container>
     </Box>
   );
