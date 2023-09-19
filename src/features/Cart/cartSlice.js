@@ -4,7 +4,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     showMiniCart: false,
-    cartItem: [],
+    cartItems: [],
   },
   reducers: {
     showMiniCart(state, action) {
@@ -18,23 +18,23 @@ const cartSlice = createSlice({
     addToCart(state, action) {
       // newItem = {id, product, quantity} (id thực chất cũng là productId, tách ta để dễ tra cứu)
       const newItem = action.payload;
-      const index = state.cartItem.findIndex((x) => x.id === newItem.id);
+      const index = state.cartItems.findIndex((x) => x.id === newItem.id);
 
       // Check if product is available in cart
       if (index >= 0) {
         // Increase quantity
-        state.cartItem[index].quantity += newItem.quantity;
+        state.cartItems[index].quantity += newItem.quantity;
       } else {
         // Add to cart
-        state.cartItem.push(newItem);
+        state.cartItems.push(newItem);
       }
     },
 
     setQuantity(state, action) {
       const { id, quantity } = action.payload;
-      const index = state.cartItem.findIndex((x) => x.id === id);
+      const index = state.cartItems.findIndex((x) => x.id === id);
       if (index >= 0) {
-        state.cartItem[index].quantity = quantity;
+        state.cartItems[index].quantity = quantity;
       }
     },
 
@@ -48,5 +48,11 @@ const cartSlice = createSlice({
 });
 
 const { actions, reducer } = cartSlice;
-export const { showMiniCart, hideMiniCart } = actions; //name export
+export const {
+  showMiniCart,
+  hideMiniCart,
+  addToCart,
+  setQuantity,
+  removeFromCart,
+} = actions; //name export
 export default reducer; //default export

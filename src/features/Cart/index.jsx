@@ -1,16 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ShoppingCart } from "./components/ShoppingCart";
 
-CartFeature.propTypes = {
-    
-};
+CartFeature.propTypes = {};
 
 function CartFeature(props) {
-    return (
-        <div>
-            Cart Feature
-        </div>
-    );
+  return <ShoppingCart />;
 }
 
 export default CartFeature;

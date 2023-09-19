@@ -1,13 +1,11 @@
 import { Box, Container, Grid, LinearProgress, Paper } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
-import { Route, Routes, useParams } from "react-router-dom";
+import { addToCart } from "features/Cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { Outlet, useParams } from "react-router-dom";
 import AddToCartForm from "../components/AddToCartForm";
-import ProductAdditional from "../components/ProductAdditional";
-import ProductDescription from "../components/ProductDescription";
 import ProductInfo from "../components/ProductInfo";
 import ProductMenu from "../components/ProductMenu";
-import ProductReviews from "../components/ProductReviews";
 import ProductThumbnail from "../components/ProductThumbnail";
 import useProductDetail from "../hooks/useProductDetail";
 
@@ -42,6 +40,8 @@ function DetailPage(props) {
 
   const { productId } = useParams();
 
+  const dispatch = useDispatch();
+
   const { product, loading } = useProductDetail(productId);
 
   if (loading) {
@@ -52,8 +52,14 @@ function DetailPage(props) {
     );
   }
 
-  const handleAddToCartSubmit = (formValues) => {
-    console.log("formValues", formValues);
+  const handleAddToCartSubmit = ({ quantity }) => {
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity,
+    });
+
+    dispatch(action);
   };
 
   return (
@@ -71,24 +77,8 @@ function DetailPage(props) {
           </Grid>
         </Paper>
         <ProductMenu />
-        <Routes>
-          {/* <Route path={`/products/${productId}/`}>
-            <ProductDescription product={product} />
-          </Route> */}
-          <Route
-            path={`/products/${productId}/`}
-            element={<ProductDescription product={product} />}
-          />
-          <Route
-            path={`/products/${productId}/additional`}
-            element={<ProductAdditional />}
-          />
-          <Route
-            path={`/products/${productId}/reviews`}
-            element={<ProductReviews />}
-          />
-        </Routes>
-        <ProductDescription product={product} />
+        {/* Để hiện thị các thành phần trong router con */}
+        <Outlet />
       </Container>
     </Box>
   );

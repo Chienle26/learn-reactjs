@@ -1,10 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import { array } from "yup";
 import Product from "./Product";
+import PropTypes from "prop-types";
 
 ProductList.propTypes = {
-  data: array,
+  data: PropTypes.array,
 };
 
 ProductList.defaultProps = {

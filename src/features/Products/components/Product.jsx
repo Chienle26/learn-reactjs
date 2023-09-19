@@ -16,7 +16,7 @@ function Product({ product }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/products/${product.id}`);
+    navigate(`/products/${product.id}/`);
 
     // Or dùng như này cũng được
     // window.location = `/products/${product.id}`;

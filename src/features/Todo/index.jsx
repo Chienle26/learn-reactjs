@@ -64,7 +64,7 @@ function TodoFeature(props) {
   };
 
   return (
-    <div>
+    <div style={{ paddingLeft: "50px" }}>
       <h3>What to do</h3>
       <TodoForm onSubmit={handleTodoFormSubmit} />
 

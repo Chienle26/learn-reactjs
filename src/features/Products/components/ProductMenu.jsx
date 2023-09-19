@@ -1,8 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { Box, Link } from "@mui/material";
-import { NavLink, useLocation, useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { NavLink, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,21 +36,17 @@ function ProductMenu(props) {
   return (
     <Box component="ul" className={classes.root}>
       <li>
-        <Link component={NavLink} to={`/products/${productId}/`} exact>
+        <Link component={NavLink} to={`/products/${productId}/`}>
           Description
         </Link>
       </li>
       <li>
-        <Link
-          component={NavLink}
-          to={`/products/${productId}/additional`}
-          exact
-        >
+        <Link component={NavLink} to={`/products/${productId}/additional`}>
           Additional Information
         </Link>
       </li>
       <li>
-        <Link component={NavLink} to={`/products/${productId}/reviews`} exact>
+        <Link component={NavLink} to={`/products/${productId}/reviews`}>
           Reviews
         </Link>
       </li>

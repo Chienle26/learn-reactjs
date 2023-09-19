@@ -53,7 +53,7 @@ function QuantityField(props) {
       error={!!hasError}
       fullWidth
       margin="normal"
-      variant="outline"
+      variant="standard"
       size="small"
       className={classes.root}
     >
