@@ -13,7 +13,6 @@ function ProductFeature(props) {
   const { productId } = useParams();
 
   const { product } = useProductDetail(productId);
-  console.log("🚀 ~ file: index.jsx:16 ~ ProductFeature ~ product:", product);
 
   return (
     <Box pt={4}>
